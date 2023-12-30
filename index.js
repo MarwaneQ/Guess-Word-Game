@@ -25,6 +25,19 @@ function generateInput() {
         inputsContainer.appendChild(tryDiv)
     }
     inputsContainer.children[0].children[1].focus();
+
+    const inpustDisabeled = document.querySelectorAll(".disabled-inputs input")
+    inpustDisabeled.forEach((input)=>(input.disabled = true))
+
+    const inputs = document.querySelectorAll('input')
+    inputs.forEach((input, index) => {
+        input.addEventListener('input', function () {
+            this.value = this.value.toUpperCase()
+
+            const nextInput = inputs[index + 1];
+            if (nextInput) nextInput.focus();
+        })
+    })
 }
 window.onload =function(){
     generateInput()
